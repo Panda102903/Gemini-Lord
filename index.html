@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Generate with Gemini</title>
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header>
+      <h1>AI Generate with Gemini</h1>
+      <div class="button-group">
+        <button onclick="clearStorage()">Xóa lịch sử</button>
+        <button onclick="displaySavedQuizzes()">Xem Quiz đã lưu</button>
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- Main -->
+    <main>
+      <!-- Nút mở popup -->
+      <button id="show-quiz-form">Generate Quiz by AI</button>
+
+      <!-- Popup Form -->
+      <div id="quiz-popup" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Generate Quiz</h2>
+          <input type="text" id="prompt" placeholder="Quiz Topic" />
+          <select id="question-count">
+            <option value="5">5 questions</option>
+            <option value="10">10 questions</option>
+            <option value="15">15 questions</option>
+            <option value="20">20 questions</option>
+          </select>
+          <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+          <select id="language">
+            <option value="english">English</option>
+            <option value="vietnamese">Vietnamese</option>
+          </select>
+          <button onclick="generateQuiz()">Generate Quiz</button>
+        </div>
+      </div>
+
+      <div id="saved-quiz-wrapper">
+        <h3 id="saved-quiz-title">Quiz đã lưu</h3>
+        <div id="saved-quiz-container"></div>
+      </div>
+
+      <!-- <div id="quiz-container"></div> -->
+      <div id="quiz-popup-container">
+        <button id="quiz-popup-close" onclick="document.getElementById('quiz-popup-container').style.display='none'">✖</button>
+        <div id="view-quiz-popup">
+          <div id="quiz-container"></div>
+        </div>
+      </div>
+    </main>
+    <!-- End Main -->
+
+    <!-- Footer -->
+    <div class="footer-container">
+      <p>© 2025 - AI Generate with Gemini</p>
+      <p>
+        <i>Lưu ý: Quiz có thể không chính xác, chỉ mang tính thử nghiệm!</i>
+      </p>
+    </div>
+    <!-- End Footer -->
+
+    <!-- Script -->
+    <script type="module" src="js/script.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const modal = document.getElementById("quiz-popup");
+        const btn = document.getElementById("show-quiz-form");
+        const closeBtn = document.querySelector(".close");
+
+        // Khi nhấn nút, hiển thị popup
+        btn.onclick = function () {
+          modal.style.display = "flex";
+        };
+
+        // Khi nhấn vào nút "X", đóng popup
+        closeBtn.onclick = function () {
+          modal.style.display = "none";
+        };
+
+        // Khi nhấn ra ngoài popup, cũng đóng
+        window.onclick = function (event) {
+          if (event.target === modal) {
+            modal.style.display = "none";
+          }
+        };
+      });
+    </script>
+
+
+    <!-- End Script -->
+  </body>
+</html>

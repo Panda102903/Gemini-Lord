@@ -1,0 +1,289 @@
+html {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+input,
+textarea,
+select,
+button {
+  outline: none;
+}
+input {
+  line-height: normal;
+}
+label,
+button {
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Căn chỉnh tổng thể */
+body {
+  background-color: #f4f4f4;
+  color: #333;
+  text-align: center;
+}
+
+/* Header */
+header {
+  background-color: #007bff;
+  color: white;
+  padding: 15px 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Container chính */
+.container {
+  width: 90%;
+  max-width: 600px;
+  margin: 30px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Ô nhập và select */
+.quiz-form input,
+.quiz-form select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Nút bấm */
+button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+main{
+  flex-grow: 1;
+}
+
+/* Nhóm nút bấm */
+.button-group {
+  margin-top: 15px;
+}
+
+/* Quiz container */
+#quiz-container {
+  margin-top: 20px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+.footer-container {
+  margin-top: 30px;
+  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  color: black;
+  padding: 10px 0;
+  font-size: 14px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.correct {
+  color: green;
+  font-weight: bold;
+}
+
+.incorrect {
+  color: red;
+  font-weight: bold;
+}
+
+.correct-answer {
+  color: blue;
+  font-weight: bold;
+}
+
+/* Ẩn popup mặc định */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Nội dung của popup */
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Nút đóng popup */
+.close {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#saved-quiz-wrapper {
+  display: none;
+  text-align: center;
+  margin: 20px 0;
+  padding: 10px;
+  width: 100%;
+}
+/* Container chứa các card */
+#saved-quiz-container {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  align-items: center;
+}
+
+/* Style cho card */
+.quiz-card {
+  width: calc(25%); /* Định kích thước cố định */
+  height: 200px; /* Định kích thước cố định */
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  margin: 10px;
+  background-image: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+
+.quiz-card:hover {
+  transform: scale(1.05);
+}
+
+.quiz-actions {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+.quiz-card:hover .quiz-actions {
+  display: block;
+}
+
+/* Style cho tiêu đề */
+.quiz-title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+/* Style cho nút */
+.play-btn,
+.delete-btn {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin: 3px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.play-btn:hover {
+  background: #007bff;
+}
+
+.delete-btn:hover {
+  background: #dc3545;
+}
+
+#quiz-popup-container {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  max-height: 80vh;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: hidden; /* Giữ bo tròn góc */
+}
+
+#view-quiz-popup {
+  padding: 20px;
+  max-height: 70vh; /* Giới hạn chiều cao */
+  overflow-y: auto; /* Quan trọng: Bật thanh cuộn dọc */
+  overflow-x: hidden;
+}
+
+#quiz-container {
+  min-height: 100px; /* Giúp nội dung không bị co lại */
+}
+
+#quiz-popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+#quiz-popup-close:hover {
+  background: darkred;
+}
