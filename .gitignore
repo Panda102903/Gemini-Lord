@@ -1,4 +1,4 @@
 # Ignore config.js file
-config/config.js
+
 # Ignore node_modules directory
 .vscode
