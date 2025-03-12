@@ -9,30 +9,30 @@
     <meta name="robots" content="index, follow" />
     <title>Quiz AI Generate with Gemini</title>
 
-    <script type="module" src="../js/script.js"></script>
     <link rel="stylesheet" href="../css/index.css" />
   </head>
 
   <body>
-    <!-- Header -->
     <header>
-      <h1>AI Generate with Gemini</h1>
-    </header>
-    <!-- End Header -->
-
-    <!-- main -->
-    <main>
-      <div class="button-group">
-        <button type="submit" onclick="displaySavedQuizzes()">Generated Quiz</button>
-        <button type="submit" onclick="clearStorage()">Clear Storage</button>
+      <div class="header-top">
+        <div class="ai-logo">
+          <img src="../ai.webp" onclick="window.location.href='index.html'" alt="Ảnh AI" />
+        </div>
+        <div class="header-content">
+          <h1>AI Generate with Gemini</h1>
+          <div class="button-group">
+            <button class="btn3" id="show-quiz-form">Generate Quiz by AI</button>
+            <button class="btn2" onclick="displaySavedQuizzes()">Quiz history</button>
+            <button class="btn1" onclick="clearStorage()">Delete history</button>
+          </div>
+        </div>
       </div>
+    </header>
 
-      <button type="button" id="show-quiz-form">Generate Quiz by AI</button>
-
+    <main>
       <div id="quiz-popup" class="modal">
         <div class="modal-content">
           <input type="text" id="prompt" placeholder="Type a subject to generate a quiz" class="quiz-input" />
-
           <div class="quiz-options">
             <select aria-label="questions" id="question-count">
               <option value="5">5 questions</option>
@@ -57,32 +57,34 @@
         </div>
       </div>
 
+      <div id="alert-popup" class="popup">
+        <div class="popup-content">
+          <span id="alert-popup-icon">ℹ️</span>
+          <span id="alert-popup-content"></span>
+        </div>
+      </div>
+
       <div id="saved-quiz-wrapper">
         <h3 id="saved-quiz-title">Generated Quiz</h3>
         <div id="saved-quiz-container"></div>
       </div>
 
-      <div id="quiz-popup-container">
-        <div id="view-quiz-popup">
-          <div id="quiz-container"></div>
-        </div>
+      <div id="quiz-container"></div>
+
+      <div id="confirm-popup" class="popup">
+        <div id="popup-content" class="popup-content"></div>
       </div>
     </main>
-    <!--   end main   -->
 
-    <!-- footer -->
     <div class="footer-container">
-      <p>© 2025 Panda. All rights reserved.</p>
+      <p>© 2025 DP12-Team 8. All rights reserved.</p>
     </div>
-    <!-- end footer -->
 
-    <!-- script -->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         const modal = document.getElementById('quiz-popup')
         const btn = document.getElementById('show-quiz-form')
         const closeBtn = document.querySelector('.close-btn')
-
         btn.onclick = function () {
           modal.style.display = 'flex'
         }
@@ -90,7 +92,29 @@
           modal.style.display = 'none'
         }
       })
+      document.addEventListener('DOMContentLoaded', function () {
+        const quizCards = document.querySelectorAll('.quiz-card')
+        quizCards.forEach((card) => {
+          const actions = card.querySelector('.quiz-actions')
+          if ('ontouchstart' in window || navigator.maxTouchPoints) {
+            card.addEventListener('click', function (event) {
+              event.stopPropagation()
+              if (actions.style.display === 'block') {
+                actions.style.display = 'none'
+              } else {
+                document.querySelectorAll('.quiz-actions').forEach((el) => {
+                  el.style.display = 'none'
+                })
+                actions.style.display = 'block'
+              }
+            })
+            document.addEventListener('click', function () {
+              actions.style.display = 'none'
+            })
+          }
+        })
+      })
     </script>
-    <!-- end script -->
+    <script type="module" src="../js/script.js"></script>
   </body>
 </html>
